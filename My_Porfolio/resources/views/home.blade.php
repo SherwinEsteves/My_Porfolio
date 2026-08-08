@@ -383,10 +383,10 @@
 {{-- ================================================================ --}}
 {{--  ABOUT --}}
 {{-- ================================================================ --}}
-<section id="about" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-10 md:py-12 min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-line">
+<section id="about" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-14 md:py-16 min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-line">
 
     {{-- section header --}}
-    <div class="reveal mb-10 text-center md:text-left">
+    <div class="reveal mb-12 text-center md:text-left">
         <p class="text-accent font-semibold uppercase tracking-widest text-sm mb-2">About Me</p>
         <h1 class="text-xl md:text-2xl font-bold text-heading">A Little About Me</h1>
         <div class="mt-4 w-24 h-1 bg-gradient-to-r from-accent to-accent-hover rounded-full"></div>
@@ -482,10 +482,10 @@
 {{-- ================================================================ --}}
 {{--  SKILLS --}}
 {{-- ================================================================ --}}
-<section id="skills" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-10 md:py-12 min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-line">
+<section id="skills" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-14 md:py-16 min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-line">
 
     {{-- section header --}}
-    <div class="reveal mb-10 text-center md:text-left">
+    <div class="reveal mb-12 text-center md:text-left">
         <p class="text-accent font-semibold uppercase tracking-widest text-sm mb-2">What I Do</p>
         <h1 class="text-xl md:text-2xl font-bold text-heading">My Skills</h1>
         <div class="mt-4 w-24 h-1 bg-gradient-to-r from-accent to-accent-hover rounded-full"></div>
@@ -678,10 +678,10 @@
 {{-- ================================================================ --}}
 {{--  EXPERIENCE --}}
 {{-- ================================================================ --}}
-<section id="experience" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-10 md:py-12 min-h-[calc(100vh-80px)] flex flex-col border-t border-line">
+<section id="experience" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-14 md:py-16 min-h-[calc(100vh-80px)] flex flex-col border-t border-line">
 
     {{-- section header --}}
-    <div class="reveal mb-10 text-center md:text-left">
+    <div class="reveal mb-12 text-center md:text-left">
         <p class="text-accent font-semibold uppercase tracking-widest text-sm mb-2">Experience</p>
         <h1 class="text-xl md:text-2xl font-bold text-heading">Professional Experience</h1>
         <div class="mt-4 w-24 h-1 bg-gradient-to-r from-accent to-accent-hover rounded-full"></div>
@@ -936,10 +936,10 @@
 {{-- ================================================================ --}}
 {{--  EDUCATION --}}
 {{-- ================================================================ --}}
-<section id="education" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-10 md:py-12 min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-line">
+<section id="education" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-14 md:py-16 min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-line">
 
     {{-- section header --}}
-    <div class="reveal mb-8 text-center md:text-left">
+    <div class="reveal mb-10 text-center md:text-left">
         <p class="text-accent font-semibold uppercase tracking-widest text-sm mb-2">Education & Certifications</p>
         <h1 class="text-xl md:text-2xl font-bold text-heading">A Foundation of Learning</h1>
         <div class="mt-4 w-24 h-1 bg-gradient-to-r from-accent to-accent-hover rounded-full"></div>
@@ -1108,7 +1108,7 @@
 {{-- ================================================================ --}}
 {{--  CONTACT --}}
 {{-- ================================================================ --}}
-<section id="contact" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-10 md:py-14 min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-line">
+<section id="contact" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-14 md:py-16 min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-line">
 
     {{-- section header --}}
     <div class="text-center md:text-left">
