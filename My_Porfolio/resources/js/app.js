@@ -52,14 +52,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navLinks.forEach((link) => {
         link.addEventListener('click', (e) => {
-            const target = document.querySelector(link.getAttribute('href'));
-            if (!target) return;
+            const href = link.getAttribute('href');
+            const hashIndex = href.indexOf('#');
+            if (hashIndex === -1) return;
 
-            e.preventDefault();
-            closeMenu();
-            scrollToSection(target);
+            const path = href.slice(0, hashIndex) || window.location.pathname;
+            const hash = href.slice(hashIndex);
 
-            history.replaceState(null, '', link.getAttribute('href'));
+            if (path === window.location.pathname) {
+                const target = document.querySelector(hash);
+                if (!target) return;
+
+                e.preventDefault();
+                closeMenu();
+                scrollToSection(target);
+
+                history.replaceState(null, '', hash);
+            } else {
+                closeMenu();
+            }
         });
     });
 
@@ -100,16 +111,22 @@ document.addEventListener('DOMContentLoaded', () => {
         setActive(current);
     };
 
-    if (window.location.hash) {
-        const target = document.querySelector(window.location.hash);
-        if (target) {
-            window.scrollTo({ top: 0, behavior: 'instant' });
-            setTimeout(() => scrollToSection(target), 50);
-        }
-    }
+    const isBlogDetail = !!document.getElementById('blog-detail-page');
 
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    if (isBlogDetail) {
+        setActive('blog');
+    } else {
+        if (window.location.hash) {
+            const target = document.querySelector(window.location.hash);
+            if (target) {
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                setTimeout(() => scrollToSection(target), 50);
+            }
+        }
+
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+    }
 
     // responsibilities modal
     const modal = document.getElementById('responsibilities-modal');
@@ -198,6 +215,50 @@ document.addEventListener('DOMContentLoaded', () => {
     certModal?.querySelector('[data-cert-backdrop]')?.addEventListener('click', closeCertModal);
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && certModal && !certModal.classList.contains('hidden')) closeCertModal();
+    });
+
+    // blog carousel scroll buttons
+    const blogCarousel = document.getElementById('blog-carousel');
+    if (blogCarousel) {
+        document.querySelectorAll('[data-carousel-prev], [data-carousel-next]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const card = blogCarousel.querySelector('.blog-card');
+                const amount = (card?.offsetWidth || 320) + 20;
+                blogCarousel.scrollBy({
+                    left: btn.hasAttribute('data-carousel-prev') ? -amount : amount,
+                    behavior: 'smooth',
+                });
+            });
+        });
+    }
+
+    // blog gallery lightbox
+    const lightbox = document.getElementById('gallery-lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+
+    const openLightbox = (src) => {
+        if (!lightbox || !src) return;
+        lightboxImage.src = src;
+        lightbox.classList.remove('hidden');
+        lockScroll();
+    };
+
+    const closeLightbox = () => {
+        if (!lightbox) return;
+        lightbox.classList.add('hidden');
+        lightboxImage.src = '';
+        unlockScroll();
+    };
+
+    document.addEventListener('click', (e) => {
+        const galleryItem = e.target.closest('[data-gallery-image]');
+        if (galleryItem) openLightbox(galleryItem.dataset.galleryImage);
+    });
+
+    lightbox?.querySelector('[data-lightbox-backdrop]')?.addEventListener('click', closeLightbox);
+    lightbox?.querySelector('[data-lightbox-close]')?.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox && !lightbox.classList.contains('hidden')) closeLightbox();
     });
 
     // scroll-triggered reveal (animate once when element enters viewport)

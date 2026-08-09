@@ -29,27 +29,27 @@
 
         <div class="flex items-center gap-2">
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#home" data-nav="home" class="relative group py-1">
+                <a href="/#home" data-nav="home" class="relative group py-1">
                     <span class="nav-label text-body group-hover:text-heading transition-colors duration-300">Home</span>
                     <span class="nav-underline absolute -bottom-0.5 h-0.5 bg-accent transition-all duration-300 w-0 left-1/2 group-hover:w-full group-hover:left-0"></span>
                 </a>
-                <a href="#about" data-nav="about" class="relative group py-1">
-                    <span class="nav-label text-body group-hover:text-heading transition-colors duration-300">About</span>
+                <a href="/#blog" data-nav="blog" class="relative group py-1">
+                    <span class="nav-label text-body group-hover:text-heading transition-colors duration-300">Blog</span>
                     <span class="nav-underline absolute -bottom-0.5 h-0.5 bg-accent transition-all duration-300 w-0 left-1/2 group-hover:w-full group-hover:left-0"></span>
                 </a>
-                <a href="#skills" data-nav="skills" class="relative group py-1">
+                <a href="/#skills" data-nav="skills" class="relative group py-1">
                     <span class="nav-label text-body group-hover:text-heading transition-colors duration-300">Skills</span>
                     <span class="nav-underline absolute -bottom-0.5 h-0.5 bg-accent transition-all duration-300 w-0 left-1/2 group-hover:w-full group-hover:left-0"></span>
                 </a>
-                <a href="#experience" data-nav="experience" class="relative group py-1">
+                <a href="/#experience" data-nav="experience" class="relative group py-1">
                     <span class="nav-label text-body group-hover:text-heading transition-colors duration-300">Experience</span>
                     <span class="nav-underline absolute -bottom-0.5 h-0.5 bg-accent transition-all duration-300 w-0 left-1/2 group-hover:w-full group-hover:left-0"></span>
                 </a>
-                <a href="#education" data-nav="education" class="relative group py-1">
+                <a href="/#education" data-nav="education" class="relative group py-1">
                     <span class="nav-label text-body group-hover:text-heading transition-colors duration-300">Education</span>
                     <span class="nav-underline absolute -bottom-0.5 h-0.5 bg-accent transition-all duration-300 w-0 left-1/2 group-hover:w-full group-hover:left-0"></span>
                 </a>
-                <a href="#contact" data-nav="contact" class="relative group py-1">
+                <a href="/#contact" data-nav="contact" class="relative group py-1">
                     <span class="nav-label text-body group-hover:text-heading transition-colors duration-300">Contact</span>
                     <span class="nav-underline absolute -bottom-0.5 h-0.5 bg-accent transition-all duration-300 w-0 left-1/2 group-hover:w-full group-hover:left-0"></span>
                 </a>
@@ -67,12 +67,12 @@
 
         <nav id="mobile-menu" class="md:hidden overflow-hidden transition-all duration-300 ease-in-out text-body text-sm font-medium bg-surface" style="max-height: 0; opacity: 0;">
             <div class="flex flex-col gap-4 mt-4 mb-4">
-                <a href="#home" data-nav="home" class="mobile-nav-link hover:text-heading transition">Home</a>
-                <a href="#about" data-nav="about" class="mobile-nav-link hover:text-heading transition">About</a>
-                <a href="#skills" data-nav="skills" class="mobile-nav-link hover:text-heading transition">Skills</a>
-                <a href="#experience" data-nav="experience" class="mobile-nav-link hover:text-heading transition">Experience</a>
-                <a href="#education" data-nav="education" class="mobile-nav-link hover:text-heading transition">Education</a>
-                <a href="#contact" data-nav="contact" class="mobile-nav-link hover:text-heading transition">Contact</a>
+                <a href="/#home" data-nav="home" class="mobile-nav-link hover:text-heading transition">Home</a>
+                <a href="/#blog" data-nav="blog" class="mobile-nav-link hover:text-heading transition">Blog</a>
+                <a href="/#skills" data-nav="skills" class="mobile-nav-link hover:text-heading transition">Skills</a>
+                <a href="/#experience" data-nav="experience" class="mobile-nav-link hover:text-heading transition">Experience</a>
+                <a href="/#education" data-nav="education" class="mobile-nav-link hover:text-heading transition">Education</a>
+                <a href="/#contact" data-nav="contact" class="mobile-nav-link hover:text-heading transition">Contact</a>
             </div>
         </nav>
     </header>
@@ -85,7 +85,7 @@
         <div class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-12">
             <div class="grid md:grid-cols-3 gap-10">
                 <div>
-                    <a href="#home">
+                    <a href="/#home">
                         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-14 w-auto mb-4">
                     </a>
                     <p class="text-muted text-sm leading-relaxed">
@@ -96,12 +96,12 @@
                 <div>
                     <h4 class="text-heading font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-3 text-sm">
-                        <li><a href="#home" class="text-muted hover:text-accent transition">Home</a></li>
-                        <li><a href="#about" class="text-muted hover:text-accent transition">About</a></li>
-                        <li><a href="#skills" class="text-muted hover:text-accent transition">Skills</a></li>
-                        <li><a href="#experience" class="text-muted hover:text-accent transition">Experience</a></li>
-                        <li><a href="#education" class="text-muted hover:text-accent transition">Education</a></li>
-                        <li><a href="#contact" class="text-muted hover:text-accent transition">Contact</a></li>
+                        <li><a href="/#home" class="text-muted hover:text-accent transition">Home</a></li>
+                        <li><a href="/#blog" class="text-muted hover:text-accent transition">Blog</a></li>
+                        <li><a href="/#skills" class="text-muted hover:text-accent transition">Skills</a></li>
+                        <li><a href="/#experience" class="text-muted hover:text-accent transition">Experience</a></li>
+                        <li><a href="/#education" class="text-muted hover:text-accent transition">Education</a></li>
+                        <li><a href="/#contact" class="text-muted hover:text-accent transition">Contact</a></li>
                     </ul>
                 </div>
 

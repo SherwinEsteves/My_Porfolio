@@ -381,103 +381,61 @@
 
 
 {{-- ================================================================ --}}
-{{--  ABOUT --}}
+{{--  TECHNICAL BLOG --}}
 {{-- ================================================================ --}}
-<section id="about" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-14 md:py-16 min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-line">
+<section id="blog" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-14 md:py-16 min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-line">
+
+    @php
+        $recentPosts = $posts->take(5);
+    @endphp
 
     {{-- section header --}}
     <div class="reveal mb-12 text-center md:text-left">
-        <p class="text-accent font-semibold uppercase tracking-widest text-sm mb-2">About Me</p>
-        <h1 class="text-xl md:text-2xl font-bold text-heading">A Little About Me</h1>
+        <p class="text-accent font-semibold uppercase tracking-widest text-sm mb-2">Knowledge Base</p>
+        <h1 class="text-xl md:text-2xl font-bold text-heading">Technical Blog</h1>
         <div class="mt-4 w-24 h-1 bg-gradient-to-r from-accent to-accent-hover rounded-full"></div>
+        <p class="text-muted leading-relaxed mt-6 max-w-xl" style="transition-delay: 60ms">
+            Tutorials, configurations, troubleshooting guides, and technical projects I've worked on.
+        </p>
     </div>
     {{-- end section header --}}
 
-    {{-- about grid: text (left) + personal info (right) --}}
-    <div class="grid md:grid-cols-2 gap-12 items-center">
+    {{-- blog carousel --}}
+    @if ($posts->isNotEmpty())
+        <div class="relative reveal" style="transition-delay: 100ms">
+            <button type="button" data-carousel-prev aria-label="Previous posts"
+                class="hidden md:flex absolute -left-5 top-[38%] z-10 w-10 h-10 items-center justify-center rounded-full glass text-heading hover:text-accent transition-all duration-300 shadow-lg">
+                <i class="fas fa-chevron-left text-sm"></i>
+            </button>
 
-        {{-- text column --}}
-        <div class="text-center md:text-left">
-            <p class="reveal text-body leading-relaxed mb-4" style="transition-delay: 100ms">
-                I'm an Information Technology student and IT professional who enjoys learning
-                through hands-on experience, troubleshooting real-world technical problems,
-                and building reliable systems and infrastructure.
-            </p>
+            <div id="blog-carousel" class="no-scrollbar flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2">
+                @foreach ($recentPosts as $post)
+                    @include('partials.blog-card', ['post' => $post, 'class' => 'w-[280px] sm:w-[320px] shrink-0 snap-start'])
+                @endforeach
+            </div>
 
-            <p class="reveal text-muted leading-relaxed mb-4" style="transition-delay: 160ms">
-                My interests are centered around IT infrastructure, system administration,
-                networking, virtualization, server management, and DevOps practices. I enjoy
-                understanding how systems work together and finding practical ways to keep
-                services reliable, secure, and efficient.
-            </p>
+            <button type="button" data-carousel-next aria-label="Next posts"
+                class="hidden md:flex absolute -right-5 top-[38%] z-10 w-10 h-10 items-center justify-center rounded-full glass text-heading hover:text-accent transition-all duration-300 shadow-lg">
+                <i class="fas fa-chevron-right text-sm"></i>
+            </button>
+        </div>
 
-            <p class="reveal text-muted leading-relaxed" style="transition-delay: 220ms">
-                I'm continuously developing my technical skills through professional experience,
-                personal projects, and hands-on experimentation with Linux servers, Proxmox,
-                networking, VPS infrastructure, and self-hosted applications.
+    @else
+        {{-- empty state --}}
+        <div class="reveal glass rounded-2xl p-10 md:p-14 text-center" style="transition-delay: 120ms">
+            <div class="w-14 h-14 mx-auto mb-5 rounded-2xl bg-accent/10 text-accent flex items-center justify-center text-2xl">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <p class="text-muted text-sm leading-relaxed max-w-md mx-auto">
+                Technical articles and tutorials will be published here.
             </p>
         </div>
-        {{-- end text column --}}
-
-        {{-- personal info card --}}
-        <div class="reveal-right glass rounded-2xl p-7" style="transition-delay: 200ms">
-            <h2 class="text-lg font-semibold text-heading mb-6 flex items-center gap-3">
-                <i class="fas fa-user text-accent"></i> Quick Facts
-            </h2>
-
-            <ul class="space-y-6">
-                {{-- based in --}}
-                <li class="flex items-start gap-4">
-                    <span class="w-10 h-10 flex items-center justify-center rounded-lg glass text-accent">
-                        <i class="fas fa-location-dot"></i>
-                    </span>
-                    <div>
-                        <p class="text-sm text-muted">Based in</p>
-                        <p class="text-body">Quezon City, Philippines</p>
-                    </div>
-                </li>
-
-                {{-- education --}}
-                <li class="flex items-start gap-4">
-                    <span class="w-10 h-10 flex items-center justify-center rounded-lg glass text-accent">
-                        <i class="fas fa-graduation-cap"></i>
-                    </span>
-                    <div>
-                        <p class="text-sm text-muted">Education</p>
-                        <p class="text-body leading-relaxed">Bachelor of Science in Information Technology</p>
-                    </div>
-                </li>
-
-                {{-- primary focus --}}
-                <li class="flex items-start gap-4">
-                    <span class="w-10 h-10 flex items-center justify-center rounded-lg glass text-accent">
-                        <i class="fas fa-server"></i>
-                    </span>
-                    <div>
-                        <p class="text-sm text-muted">Primary Focus</p>
-                        <p class="text-body leading-relaxed">IT Infrastructure &bull; System Administration &bull; Networking &bull; Virtualization</p>
-                    </div>
-                </li>
-
-                {{-- career direction --}}
-                <li class="flex items-start gap-4">
-                    <span class="w-10 h-10 flex items-center justify-center rounded-lg glass text-accent">
-                        <i class="fas fa-route"></i>
-                    </span>
-                    <div>
-                        <p class="text-sm text-muted">Career Direction</p>
-                        <p class="text-body leading-relaxed">DevOps &bull; Systems Engineering &bull; Infrastructure</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        {{-- end personal info card --}}
-
-    </div>
-    {{-- end about grid --}}
+        {{-- end empty state --}}
+    @endif
+    {{-- end blog carousel --}}
 
 </section>
-{{-- ================= END OF ABOUT SECTION ================= --}}
+{{-- ================= END OF TECHNICAL BLOG SECTION ================= --}}
 
 {{-- ================================================================ --}}
 {{--  SKILLS --}}
