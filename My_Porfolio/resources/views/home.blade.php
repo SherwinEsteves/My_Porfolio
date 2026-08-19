@@ -385,54 +385,222 @@
 {{-- ================================================================ --}}
 <section id="blog" class="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-14 md:py-16 min-h-[calc(100vh-80px)] flex flex-col justify-center border-t border-line">
 
-    @php
-        $recentPosts = $posts->take(5);
-    @endphp
+@php
+    $staticPosts = [
+        ['id' => 1, 'title' => 'Setting Up Proxmox VE on a Dedicated Server', 'slug' => 'setup-proxmox-ve', 'category' => 'Proxmox', 'date' => 'August 2026', 'readingTime' => 8, 'excerpt' => 'A complete walkthrough for installing and configuring Proxmox VE on a bare-metal dedicated server, including initial network setup, storage configuration, and your first virtual machine.', 'youtubeId' => 'Iz76KqzloJY', 'tags' => ['Proxmox VE', 'Virtualization', 'Linux', 'Server Setup']],
+        ['id' => 2, 'title' => 'Configuring Nginx as a Reverse Proxy', 'slug' => 'nginx-reverse-proxy', 'category' => 'Networking', 'date' => 'August 2026', 'readingTime' => 10, 'excerpt' => 'Learn how to configure Nginx as a reverse proxy to route traffic to multiple web applications on a single server, with SSL termination and security best practices.', 'youtubeId' => 'jY2HvesANJE', 'tags' => ['Nginx', 'Reverse Proxy', 'SSL', 'Web Server']],
+        ['id' => 3, 'title' => 'Managing LXC Containers in Proxmox', 'slug' => 'proxmox-lxc-containers', 'category' => 'Proxmox', 'date' => 'July 2026', 'readingTime' => 7, 'excerpt' => 'A practical guide to creating and managing LXC containers in Proxmox VE, including snapshots, backups, and resource allocation best practices.', 'youtubeId' => 'iIfRchzYSzM', 'tags' => ['LXC', 'Proxmox', 'Containers', 'Backups']],
+        ['id' => 4, 'title' => 'Docker Compose: Multi-Container Applications', 'slug' => 'docker-compose-orchestration', 'category' => 'Docker', 'date' => 'July 2026', 'readingTime' => 9, 'excerpt' => 'Master Docker Compose to define, manage, and run multi-container applications with a single YAML file. Perfect for development environments and production deployments.', 'youtubeId' => 'tW50igaFZTQ', 'tags' => ['Docker', 'Docker Compose', 'Containers', 'DevOps']],
+        ['id' => 5, 'title' => 'Linux Disk Partitioning and Mount Points', 'slug' => 'linux-disk-partitioning', 'category' => 'Linux', 'date' => 'June 2026', 'readingTime' => 6, 'excerpt' => 'Learn how to partition disks, create filesystems, and configure mount points in Linux using fdisk, parted, and /etc/fstab for persistent storage.', 'youtubeId' => 'GoZaMgEgrHw', 'tags' => ['Linux', 'Disk Management', 'fstab', 'System Admin']],
+        ['id' => 6, 'title' => 'Setting Up a VPN Tunnel with WireGuard', 'slug' => 'wireguard-vpn-setup', 'category' => 'Networking', 'date' => 'June 2026', 'readingTime' => 7, 'excerpt' => 'Configure a secure WireGuard VPN tunnel on a Linux server for encrypted remote access to your home or office network.', 'youtubeId' => 'Ti8MYTKM1O8', 'tags' => ['WireGuard', 'VPN', 'Linux', 'Networking']],
+        ['id' => 7, 'title' => 'Proxmox Backup Server: Automated Backups', 'slug' => 'proxmox-backup-server', 'category' => 'Proxmox', 'date' => 'May 2026', 'readingTime' => 8, 'excerpt' => 'Set up Proxmox Backup Server for reliable, deduplicated backups of your virtual machines and containers with automated scheduling and retention policies.', 'youtubeId' => 'O7PYK1Nv8Bs', 'tags' => ['Proxmox', 'Backup', 'PBS', 'Disaster Recovery']],
+        ['id' => 8, 'title' => 'Ubuntu Server Hardening: Security Checklist', 'slug' => 'ubuntu-server-hardening', 'category' => 'Infrastructure', 'date' => 'May 2026', 'readingTime' => 9, 'excerpt' => 'A comprehensive security checklist for Ubuntu servers covering SSH hardening, firewall rules, automatic updates, user management, and intrusion detection.', 'youtubeId' => '2JlouLHdzOc', 'tags' => ['Ubuntu', 'Security', 'Hardening', 'UFW', 'SSH']],
+        ['id' => 9, 'title' => 'Monitoring Stack with Prometheus and Grafana', 'slug' => 'prometheus-grafana-monitoring', 'category' => 'Infrastructure', 'date' => 'April 2026', 'readingTime' => 10, 'excerpt' => 'Build a complete monitoring solution with Prometheus for metrics collection and Grafana for visualization to keep track of your servers and services.', 'youtubeId' => 'n-Aylc5OLNk', 'tags' => ['Prometheus', 'Grafana', 'Monitoring', 'Docker']],
+        ['id' => 10, 'title' => 'Troubleshooting Windows Workstation Issues', 'slug' => 'windows-troubleshooting-guide', 'category' => 'IT Support', 'date' => 'April 2026', 'readingTime' => 7, 'excerpt' => 'Practical troubleshooting steps for the most common Windows workstation problems: network issues, slow performance, printer errors, and system crashes.', 'youtubeId' => 'TA0gZs0X_7o', 'tags' => ['Windows', 'IT Support', 'Troubleshooting', 'Help Desk']],
+    ];
+@endphp
 
-    {{-- section header --}}
-    <div class="reveal mb-12 text-center md:text-left">
-        <p class="text-accent font-semibold uppercase tracking-widest text-sm mb-2">Knowledge Base</p>
-        <h1 class="text-xl md:text-2xl font-bold text-heading">Technical Blog</h1>
-        <div class="mt-4 w-24 h-1 bg-gradient-to-r from-accent to-accent-hover rounded-full"></div>
-        <p class="text-muted leading-relaxed mt-6 max-w-xl" style="transition-delay: 60ms">
-            Tutorials, configurations, troubleshooting guides, and technical projects I've worked on.
-        </p>
+{{-- section header --}}
+<div class="reveal mb-12 text-center md:text-left">
+    <p class="text-accent font-semibold uppercase tracking-widest text-sm mb-2">Knowledge Base</p>
+    <h1 class="text-xl md:text-2xl font-bold text-heading">Technical Blog</h1>
+    <div class="mt-4 w-24 h-1 bg-gradient-to-r from-accent to-accent-hover rounded-full"></div>
+    <p class="text-muted leading-relaxed mt-6 max-w-xl" style="transition-delay: 60ms">
+        Tutorials, configurations, troubleshooting guides, and technical projects I've worked on.
+    </p>
+</div>
+{{-- end section header --}}
+
+{{-- blog carousel --}}
+<div class="relative reveal" style="transition-delay: 100ms">
+    <button type="button" data-carousel-prev aria-label="Previous posts"
+        class="hidden md:flex absolute -left-5 top-[38%] z-10 w-10 h-10 items-center justify-center rounded-full glass text-heading hover:text-accent transition-all duration-300 shadow-lg">
+        <i class="fas fa-chevron-left text-sm"></i>
+    </button>
+
+    <div id="blog-carousel" class="no-scrollbar flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2">
+        @foreach ($staticPosts as $post)
+            <button type="button" data-home-post="{{ $post['id'] }}"
+               class="blog-card group text-left rounded-2xl overflow-hidden flex flex-col border border-line/40 bg-card hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 w-[280px] sm:w-[320px] shrink-0 snap-start cursor-pointer">
+                <div class="relative aspect-video overflow-hidden bg-card">
+                    <img src="https://img.youtube.com/vi/{{ $post['youtubeId'] }}/mqdefault.jpg" alt="{{ $post['title'] }}"
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                    <div class="absolute inset-0 bg-black/15"></div>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <span class="w-14 h-14 flex items-center justify-center rounded-full bg-black/55 text-white text-lg backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                            <i class="fas fa-play ml-0.5"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="p-5 flex flex-col flex-1">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="inline-flex px-2 py-0.5 rounded-md bg-accent/15 border border-accent/30 text-accent text-[10px] font-semibold uppercase tracking-wider">{{ $post['category'] }}</span>
+                        <span class="text-muted text-xs">{{ $post['date'] }}</span>
+                    </div>
+                    <h3 class="text-base font-semibold text-heading leading-snug mb-2 line-clamp-2">{{ $post['title'] }}</h3>
+                    <p class="text-muted text-sm leading-relaxed line-clamp-3 flex-1">{{ $post['excerpt'] }}</p>
+                    <span class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-accent group-hover:gap-3 transition-all duration-300">
+                        Read More <i class="fas fa-arrow-right text-xs"></i>
+                    </span>
+                </div>
+            </button>
+        @endforeach
     </div>
-    {{-- end section header --}}
 
-    {{-- blog carousel --}}
-    @if ($posts->isNotEmpty())
-        <div class="relative reveal" style="transition-delay: 100ms">
-            <button type="button" data-carousel-prev aria-label="Previous posts"
-                class="hidden md:flex absolute -left-5 top-[38%] z-10 w-10 h-10 items-center justify-center rounded-full glass text-heading hover:text-accent transition-all duration-300 shadow-lg">
-                <i class="fas fa-chevron-left text-sm"></i>
-            </button>
+    <button type="button" data-carousel-next aria-label="Next posts"
+        class="hidden md:flex absolute -right-5 top-[38%] z-10 w-10 h-10 items-center justify-center rounded-full glass text-heading hover:text-accent transition-all duration-300 shadow-lg">
+        <i class="fas fa-chevron-right text-sm"></i>
+    </button>
+</div>
+{{-- end blog carousel --}}
 
-            <div id="blog-carousel" class="no-scrollbar flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2">
-                @foreach ($recentPosts as $post)
-                    @include('partials.blog-card', ['post' => $post, 'class' => 'w-[280px] sm:w-[320px] shrink-0 snap-start'])
-                @endforeach
+<div class="mt-10 text-center md:text-left reveal" style="transition-delay: 160ms">
+    <a href="/blog" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-accent text-white font-semibold hover:bg-accent-hover transition-all duration-300 hover:-translate-y-0.5 text-sm">
+        View All Articles <i class="fas fa-arrow-right text-xs"></i>
+    </a>
+</div>
+
+{{-- blog article modal --}}
+<div id="home-blog-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" data-home-modal-backdrop></div>
+    <div class="relative z-10 flex items-start justify-center min-h-screen p-4 md:p-8 pt-24 pointer-events-none overflow-y-auto">
+        <div class="pointer-events-auto w-full max-w-3xl bg-card rounded-2xl border border-line/40 shadow-2xl mb-10">
+
+            <div class="relative">
+                <button type="button" data-home-modal-close class="absolute top-4 right-4 z-10 w-9 h-9 inline-flex items-center justify-center rounded-full bg-black/40 text-white hover:bg-black/60 backdrop-blur-sm transition-colors">
+                    <i class="fas fa-xmark"></i>
+                </button>
+                <div id="home-modal-video" class="hidden">
+                    <div class="video-container rounded-t-2xl rounded-b-none border-0 border-b">
+                        <iframe id="home-modal-iframe" src="" title="" loading="lazy"
+                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
             </div>
 
-            <button type="button" data-carousel-next aria-label="Next posts"
-                class="hidden md:flex absolute -right-5 top-[38%] z-10 w-10 h-10 items-center justify-center rounded-full glass text-heading hover:text-accent transition-all duration-300 shadow-lg">
-                <i class="fas fa-chevron-right text-sm"></i>
-            </button>
-        </div>
+            <div class="p-6 md:p-8">
+                <header class="mb-6">
+                    <span id="home-modal-category" class="inline-flex px-2.5 py-1 rounded-md bg-accent/15 border border-accent/30 text-accent text-[10px] font-semibold uppercase tracking-wider mb-3"></span>
+                    <h2 id="home-modal-title" class="text-xl md:text-2xl font-bold text-heading leading-tight mb-3"></h2>
+                    <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted">
+                        <span class="inline-flex items-center gap-1.5">
+                            <i class="fas fa-calendar-days text-accent text-xs"></i>
+                            <span id="home-modal-date"></span>
+                        </span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <i class="fas fa-clock text-accent text-xs"></i>
+                            <span id="home-modal-reading-time"></span> min read
+                        </span>
+                    </div>
+                </header>
 
-    @else
-        {{-- empty state --}}
-        <div class="reveal glass rounded-2xl p-10 md:p-14 text-center" style="transition-delay: 120ms">
-            <div class="w-14 h-14 mx-auto mb-5 rounded-2xl bg-accent/10 text-accent flex items-center justify-center text-2xl">
-                <i class="fas fa-book-open"></i>
+                <p id="home-modal-excerpt" class="text-body leading-relaxed mb-6"></p>
+
+                <div id="home-modal-body" class="article-body mb-6"></div>
+
+                <div id="home-modal-tags" class="flex flex-wrap gap-2"></div>
             </div>
-            <p class="text-muted text-sm leading-relaxed max-w-md mx-auto">
-                Technical articles and tutorials will be published here.
-            </p>
+
         </div>
-        {{-- end empty state --}}
-    @endif
-    {{-- end blog carousel --}}
+    </div>
+</div>
+
+<script>
+(function () {
+    var homePosts = [
+        { id: 1, title: "Setting Up Proxmox VE on a Dedicated Server", category: "Proxmox", date: "August 2026", readingTime: 8, youtubeId: "Iz76KqzloJY", excerpt: "A complete walkthrough for installing and configuring Proxmox VE on a bare-metal dedicated server, including initial network setup, storage configuration, and your first virtual machine.", tags: ["Proxmox VE", "Virtualization", "Linux", "Server Setup"],
+          body: '<h2>Why Proxmox VE?</h2><p>Proxmox VE is a powerful open-source server virtualization platform that combines KVM virtualization and LXC containers into a single management interface. It is an excellent choice for homelabs and production environments alike.</p><h2>Prerequisites</h2><ul><li>A dedicated server or mini PC with VT-x/VT-d support</li><li>At least 8GB RAM (16GB recommended)</li><li>A USB drive for the installation media</li><li>Ethernet cable for initial network configuration</li></ul><h2>Step 1: Download and Flash the ISO</h2><p>Download the latest Proxmox VE ISO from <a href="https://www.proxmox.com/en/downloads" target="_blank">proxmox.com</a> and flash it to a USB drive using Rufus or <code>dd</code>.</p><pre><code>sudo dd if=proxmox-ve_8.1-1.iso of=/dev/sdX bs=4M status=progress</code></pre><h2>Step 2: Install Proxmox VE</h2><p>Boot from the USB drive and follow the installer. Select your target disk, set your timezone, and configure the management network interface.</p><h2>Step 3: Post-Install Network Configuration</h2><p>After installation, access the web interface at <code>https://your-ip:8006</code>. Navigate to <strong>System &rarr; Network</strong> to configure your bridge interfaces for VM networking.</p><h2>Step 4: Storage Configuration</h2><p>Proxmox supports local storage, ZFS, NFS, CIFS, and more. For production use, ZFS on mirrored SSDs provides excellent data integrity and performance.</p><h2>Step 5: Your First VM</h2><p>Navigate to your node &rarr; Create VM, select an ISO image, allocate resources, and boot. The entire process from bare metal to running VM takes about 30 minutes.</p>' },
+        { id: 2, title: "Configuring Nginx as a Reverse Proxy", category: "Networking", date: "August 2026", readingTime: 10, youtubeId: "jY2HvesANJE", excerpt: "Learn how to configure Nginx as a reverse proxy to route traffic to multiple web applications on a single server, with SSL termination and security best practices.", tags: ["Nginx", "Reverse Proxy", "SSL", "Web Server"],
+          body: '<h2>What is a Reverse Proxy?</h2><p>A reverse proxy sits between clients and your backend applications, forwarding requests to the appropriate service based on the URL or hostname. Nginx excels at this role due to its high performance and low resource consumption.</p><h2>Basic Configuration</h2><pre><code>server {\n    listen 80;\n    server_name app.example.com;\n    location / {\n        proxy_pass http://127.0.0.1:3000;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n    }\n}</code></pre><h2>Adding SSL with Certbot</h2><pre><code>sudo apt install certbot python3-certbot-nginx\nsudo certbot --nginx -d app.example.com</code></pre><h2>Security Headers</h2><pre><code>add_header X-Frame-Options "SAMEORIGIN" always;\nadd_header X-Content-Type-Options "nosniff" always;</code></pre>' },
+        { id: 3, title: "Managing LXC Containers in Proxmox", category: "Proxmox", date: "July 2026", readingTime: 7, youtubeId: "iIfRchzYSzM", excerpt: "A practical guide to creating and managing LXC containers in Proxmox VE, including snapshots, backups, and resource allocation best practices.", tags: ["LXC", "Proxmox", "Containers", "Backups"],
+          body: '<h2>LXC Containers vs Virtual Machines</h2><p>LXC containers share the host kernel, making them extremely lightweight compared to full virtual machines. They start in seconds and consume minimal resources.</p><h2>Resource Allocation</h2><ul><li><strong>CPU:</strong> Start with 1-2 cores; adjust based on workload</li><li><strong>Memory:</strong> 512MB is sufficient for most lightweight services</li><li><strong>Storage:</strong> Use thin-provisioned volumes for flexibility</li></ul><h2>Snapshots</h2><pre><code>pct snapshot 100 pre-update-snapshot</code></pre><h2>Backup Strategy</h2><pre><code>vzdump 100 --storage local --compress zstd</code></pre>' },
+        { id: 4, title: "Docker Compose: Multi-Container Applications", category: "Docker", date: "July 2026", readingTime: 9, youtubeId: "tW50igaFZTQ", excerpt: "Master Docker Compose to define, manage, and run multi-container applications with a single YAML file.", tags: ["Docker", "Docker Compose", "Containers", "DevOps"],
+          body: '<h2>What is Docker Compose?</h2><p>Docker Compose is a tool for defining and running multi-container Docker applications. With a single YAML file, you can configure all your services, networks, and volumes.</p><h2>Basic docker-compose.yml</h2><pre><code>version: \'3.8\'\nservices:\n  web:\n    build: .\n    ports:\n      - "8080:80"\n    depends_on:\n      - db\n  db:\n    image: mysql:8.0\n    environment:\n      MYSQL_ROOT_PASSWORD: secret</code></pre><h2>Common Commands</h2><pre><code>docker compose up -d\ndocker compose down\ndocker compose logs -f web\ndocker compose ps</code></pre>' },
+        { id: 5, title: "Linux Disk Partitioning and Mount Points", category: "Linux", date: "June 2026", readingTime: 6, youtubeId: "GoZaMgEgrHw", excerpt: "Learn how to partition disks, create filesystems, and configure mount points in Linux using fdisk, parted, and /etc/fstab.", tags: ["Linux", "Disk Management", "fstab", "System Admin"],
+          body: '<h2>Identifying Disks</h2><pre><code>lsblk\nsudo fdisk -l</code></pre><h2>Partitioning with fdisk</h2><pre><code>sudo fdisk /dev/sdb\n# n - new partition\n# p - primary\n# w - write changes</code></pre><h2>Creating a Filesystem</h2><pre><code>sudo mkfs.ext4 /dev/sdb1</code></pre><h2>Making It Persistent with fstab</h2><pre><code>/dev/sdb1  /mnt/data  ext4  defaults  0  2</code></pre>' },
+        { id: 6, title: "Setting Up a VPN Tunnel with WireGuard", category: "Networking", date: "June 2026", readingTime: 7, youtubeId: "Ti8MYTKM1O8", excerpt: "Configure a secure WireGuard VPN tunnel on a Linux server for encrypted remote access.", tags: ["WireGuard", "VPN", "Linux", "Networking"],
+          body: '<h2>Why WireGuard?</h2><p>WireGuard is a modern, fast, and simple VPN protocol with state-of-the-art cryptography and a much smaller codebase than OpenVPN.</p><h2>Installation</h2><pre><code>sudo apt install wireguard</code></pre><h2>Generating Keys</h2><pre><code>wg genkey | tee privatekey | wg pubkey > publickey</code></pre><h2>Server Configuration</h2><pre><code>[Interface]\nPrivateKey = &lt;server-private-key&gt;\nAddress = 10.0.0.1/24\nListenPort = 51820</code></pre><h2>Starting the Tunnel</h2><pre><code>sudo wg-quick up wg0\nsudo systemctl enable wg-quick@wg0</code></pre>' },
+        { id: 7, title: "Proxmox Backup Server: Automated Backups", category: "Proxmox", date: "May 2026", readingTime: 8, youtubeId: "O7PYK1Nv8Bs", excerpt: "Set up Proxmox Backup Server for reliable, deduplicated backups of your virtual machines and containers.", tags: ["Proxmox", "Backup", "PBS", "Disaster Recovery"],
+          body: '<h2>Why Dedicated Backup?</h2><p>Proxmox Backup Server (PBS) provides deduplication, encryption, and incremental backups &mdash; dramatically reducing storage requirements.</p><h2>Configuring Backups</h2><p>In Proxmox VE, go to Datacenter &rarr; Backup &rarr; Add. Select your PBS instance, choose a schedule, set retention to keep 7 daily, 4 weekly, and 3 monthly backups.</p><h2>Verification</h2><pre><code>proxmox-backup-client verify datastore1</code></pre>' },
+        { id: 8, title: "Ubuntu Server Hardening: Security Checklist", category: "Infrastructure", date: "May 2026", readingTime: 9, youtubeId: "2JlouLHdzOc", excerpt: "A comprehensive security checklist for Ubuntu servers covering SSH hardening, firewall rules, automatic updates, and intrusion detection.", tags: ["Ubuntu", "Security", "Hardening", "UFW", "SSH"],
+          body: '<h2>1. SSH Hardening</h2><pre><code>PermitRootLogin no\nPasswordAuthentication no\nPort 2222</code></pre><h2>2. Firewall with UFW</h2><pre><code>sudo ufw default deny incoming\nsudo ufw default allow outgoing\nsudo ufw allow 2222/tcp\nsudo ufw enable</code></pre><h2>3. Automatic Security Updates</h2><pre><code>sudo apt install unattended-upgrades\nsudo dpkg-reconfigure -plow unattended-upgrades</code></pre><h2>4. Fail2Ban</h2><pre><code>sudo apt install fail2ban\nsudo systemctl enable fail2ban</code></pre>' },
+        { id: 9, title: "Monitoring Stack with Prometheus and Grafana", category: "Infrastructure", date: "April 2026", readingTime: 10, youtubeId: "n-Aylc5OLNk", excerpt: "Build a complete monitoring solution with Prometheus for metrics collection and Grafana for visualization.", tags: ["Prometheus", "Grafana", "Monitoring", "Docker"],
+          body: '<h2>Docker Compose Setup</h2><pre><code>version: \'3.8\'\nservices:\n  prometheus:\n    image: prom/prometheus\n    ports:\n      - "9090:9090"\n  grafana:\n    image: grafana/grafana\n    ports:\n      - "3000:3000"</code></pre><h2>Prometheus Configuration</h2><pre><code>scrape_configs:\n  - job_name: \'node\'\n    static_configs:\n      - targets: [\'node-exporter:9100\']</code></pre><h2>Grafana Dashboards</h2><p>Import pre-built dashboards from grafana.com &mdash; dashboard ID 1860 is a great starting point for server monitoring.</p>' },
+        { id: 10, title: "Troubleshooting Windows Workstation Issues", category: "IT Support", date: "April 2026", readingTime: 7, youtubeId: "TA0gZs0X_7o", excerpt: "Practical troubleshooting steps for the most common Windows workstation problems: network issues, slow performance, printer errors, and system crashes.", tags: ["Windows", "IT Support", "Troubleshooting", "Help Desk"],
+          body: '<h2>Network Connectivity Issues</h2><pre><code>ipconfig /release\nipconfig /renew\nipconfig /flushdns\nnetsh winsock reset</code></pre><h2>Slow Performance</h2><ul><li>Check Task Manager for high CPU or memory usage</li><li>Run <code>sfc /scannow</code> to check for corrupted system files</li><li>Check disk space</li></ul><h2>Blue Screen (BSOD)</h2><p>Check the Event Viewer &rarr; Windows Logs &rarr; System for bugcheck codes. Common causes include faulty RAM, driver conflicts, or overheating.</p>' }
+    ];
+
+    var modal     = document.getElementById('home-blog-modal');
+    var backdrop  = modal.querySelector('[data-home-modal-backdrop]');
+    var closeBtn  = modal.querySelector('[data-home-modal-close]');
+    var videoSec  = document.getElementById('home-modal-video');
+    var iframe    = document.getElementById('home-modal-iframe');
+    var catEl     = document.getElementById('home-modal-category');
+    var titleEl   = document.getElementById('home-modal-title');
+    var dateEl    = document.getElementById('home-modal-date');
+    var rtEl      = document.getElementById('home-modal-reading-time');
+    var excerptEl = document.getElementById('home-modal-excerpt');
+    var bodyEl    = document.getElementById('home-modal-body');
+    var tagsEl    = document.getElementById('home-modal-tags');
+
+    function openHomeBlogModal(postId) {
+        var post = homePosts.find(function (p) { return p.id === postId; });
+        if (!post) return;
+
+        catEl.textContent     = post.category;
+        titleEl.textContent   = post.title;
+        dateEl.textContent    = post.date;
+        rtEl.textContent      = post.readingTime;
+        excerptEl.textContent = post.excerpt;
+        bodyEl.innerHTML      = post.body;
+
+        if (post.youtubeId) {
+            iframe.src = 'https://www.youtube-nocookie.com/embed/' + post.youtubeId;
+            iframe.title = post.title;
+            videoSec.classList.remove('hidden');
+        } else {
+            iframe.src = '';
+            videoSec.classList.add('hidden');
+        }
+
+        if (post.tags && post.tags.length) {
+            tagsEl.innerHTML = post.tags.map(function (t) {
+                return '<span class="px-3 py-1 rounded-full bg-card border border-line text-body text-sm">' + t + '</span>';
+            }).join('');
+            tagsEl.classList.remove('hidden');
+        } else {
+            tagsEl.innerHTML = '';
+            tagsEl.classList.add('hidden');
+        }
+
+        modal.classList.remove('hidden');
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeHomeBlogModal() {
+        modal.classList.add('hidden');
+        iframe.src = '';
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-home-post]');
+        if (btn) {
+            e.preventDefault();
+            openHomeBlogModal(parseInt(btn.dataset.homePost));
+        }
+    });
+
+    closeBtn.addEventListener('click', closeHomeBlogModal);
+    backdrop.addEventListener('click', closeHomeBlogModal);
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeHomeBlogModal();
+    });
+})();
+</script>
 
 </section>
 {{-- ================= END OF TECHNICAL BLOG SECTION ================= --}}

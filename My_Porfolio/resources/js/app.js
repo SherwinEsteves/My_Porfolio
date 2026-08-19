@@ -112,8 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const isBlogDetail = !!document.getElementById('blog-detail-page');
+    const isBlogPage = window.location.pathname.startsWith('/blog');
 
-    if (isBlogDetail) {
+    if (isBlogDetail || isBlogPage) {
         setActive('blog');
     } else {
         if (window.location.hash) {

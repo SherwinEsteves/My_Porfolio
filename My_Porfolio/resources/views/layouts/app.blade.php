@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'My Portfolio')</title>
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -33,7 +35,7 @@
                     <span class="nav-label text-body group-hover:text-heading transition-colors duration-300">Home</span>
                     <span class="nav-underline absolute -bottom-0.5 h-0.5 bg-accent transition-all duration-300 w-0 left-1/2 group-hover:w-full group-hover:left-0"></span>
                 </a>
-                <a href="/#blog" data-nav="blog" class="relative group py-1">
+                <a href="/blog" data-nav="blog" class="relative group py-1">
                     <span class="nav-label text-body group-hover:text-heading transition-colors duration-300">Blog</span>
                     <span class="nav-underline absolute -bottom-0.5 h-0.5 bg-accent transition-all duration-300 w-0 left-1/2 group-hover:w-full group-hover:left-0"></span>
                 </a>
@@ -68,7 +70,7 @@
         <nav id="mobile-menu" class="md:hidden overflow-hidden transition-all duration-300 ease-in-out text-body text-sm font-medium bg-surface" style="max-height: 0; opacity: 0;">
             <div class="flex flex-col gap-4 mt-4 mb-4">
                 <a href="/#home" data-nav="home" class="mobile-nav-link hover:text-heading transition">Home</a>
-                <a href="/#blog" data-nav="blog" class="mobile-nav-link hover:text-heading transition">Blog</a>
+                <a href="/blog" data-nav="blog" class="mobile-nav-link hover:text-heading transition">Blog</a>
                 <a href="/#skills" data-nav="skills" class="mobile-nav-link hover:text-heading transition">Skills</a>
                 <a href="/#experience" data-nav="experience" class="mobile-nav-link hover:text-heading transition">Experience</a>
                 <a href="/#education" data-nav="education" class="mobile-nav-link hover:text-heading transition">Education</a>
@@ -132,6 +134,20 @@
             </div>
         </div>
     </footer>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6a7eeaba9fa2631d420916ee/1jvvs9qv8';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
 
 </body>
 </html>
