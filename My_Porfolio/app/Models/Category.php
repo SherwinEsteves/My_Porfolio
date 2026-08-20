@@ -1,19 +1,24 @@
-<?php // <<<<< CATEGORY MODEL >>>>> purpose: the Eloquent model that represents a blog post category (e.g. "Tutorial", "Infrastructure")
+<?php // <<<<< CATEGORY MODEL >>>>> purpose: data class for blog post categories (no database connection)
 
-namespace App\Models; // <<<<< NAMESPACE >>>>> purpose: puts this class in the App\Models namespace so Laravel can autoload it
+namespace App;
 
-use Illuminate\Database\Eloquent\Model; // <<<<< IMPORT >>>>> purpose: base Eloquent model class all models extend
-use Illuminate\Database\Eloquent\Relations\HasMany; // <<<<< IMPORT >>>>> purpose: return type for the one-to-many relation below
-
-class Category extends Model // <<<<< CATEGORY MODEL >>>>> purpose: maps to the "categories" database table
+/**
+ * Category data class.
+ * 
+ * This class replaces App\Models\Category (Eloquent) with a plain PHP class.
+ * No database connection is required. Category names are defined inline
+ * in the static blog post data in routes/web.php.
+ */
+class Category
 {
-    protected $fillable = [ // <<<<< FILLABLE >>>>> purpose: which columns may be mass-assigned (safety: everything else is blocked)
-        'name', // <<<<< NAME >>>>> purpose: the display name of the category, e.g. "Tutorial"
-        'slug', // <<<<< SLUG >>>>> purpose: url-friendly version of the name, e.g. "tutorial"
-    ];
+    public $id;
+    public $name;
+    public $slug;
 
-    public function posts(): HasMany // <<<<< POSTS RELATION >>>>> purpose: one category can have many blog posts
+    public function __construct($data = [])
     {
-        return $this->hasMany(Post::class); // <<<<< HAS MANY >>>>> purpose: loads all posts whose category_id points at this category
+        $this->id = $data['id'] ?? 1;
+        $this->name = $data['name'] ?? '';
+        $this->slug = $data['slug'] ?? '';
     }
 }

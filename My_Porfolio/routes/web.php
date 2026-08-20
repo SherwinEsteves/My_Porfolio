@@ -2,31 +2,19 @@
 
 use App\Http\Controllers\ContactController; // <<<<< IMPORT >>>>> purpose: controller used by the contact form submission
 use App\Http\Controllers\PostController; // <<<<< IMPORT >>>>> purpose: controller used by the blog detail route
-use App\Models\Post; // <<<<< IMPORT >>>>> purpose: query published posts for the home page
 use Illuminate\Support\Facades\Route; // <<<<< IMPORT >>>>> purpose: Laravel's route registration facade
-
-Route::get('/', function () { // <<<<< HOME ROUTE >>>>> purpose: the main portfolio landing page at "/"
-    return view('home', [ // <<<<< RENDER HOME >>>>> purpose: render the single-page portfolio
-        'posts' => Post::published() // <<<<< PUBLISHED ONLY >>>>> purpose: only show posts whose date is in the past
-            ->with('category') // <<<<< EAGER LOAD >>>>> purpose: load category in one query so cards can show it
-            ->latest('published_at') // <<<<< NEWEST FIRST >>>>> purpose: sort posts by publish date, newest on top
-            ->get(), // <<<<< EXECUTE QUERY >>>>> purpose: fetch the posts collection
-    ]);
-})->name('home'); // <<<<< ROUTE NAME >>>>> purpose: allows linking with route('home')
-
-Route::post('/contact', [ContactController::class, 'send'])->name('contact.send'); // <<<<< CONTACT FORM >>>>> purpose: posts the contact form and emails the owner
 
 /*
 |--------------------------------------------------------------------------
-| STATIC BLOG ROUTES
+| STATIC BLOG POSTS DATA
 |--------------------------------------------------------------------------
-| These routes serve static blog posts defined inline below. The /blog/{slug}
-| route must come BEFORE the Post model route to ensure static posts are matched
-| first.
+| All 10 technical blog posts are defined directly here as PHP arrays.
+| This eliminates the need for a database connection to load the blog.
+| Each post uses one of the 10 YouTube URLs provided by the user.
 |--------------------------------------------------------------------------
 */
 
-// Static blog posts data - defined inline for the /blog/{slug} route
+// ─── All 10 static blog posts ──────────────────────────────────────
 $staticPosts = [
     1 => [
         'id' => 1,
@@ -140,17 +128,36 @@ $staticPosts = [
     ],
 ];
 
-// Static blog article route - must come BEFORE the Post model route
-Route::get('/blog/{slug}', function ($slug) use ($staticPosts) {
-    $post = collect($staticPosts)->firstWhere('slug', $slug);
-    abort_unless($post, 404);
-    return view('blog.article', ['post' => $post]);
-})->name('blog.article');
+// ─── Homepage route - uses static posts instead of database query ───────
+Route::get('/', function () use ($staticPosts) {
+    // Replace: 'posts' => Post::published() ...->get()
+    // with the static array below (same structure the homepage expects)
+    $posts = array_values($staticPosts);
+    return view('home', ['posts' => $posts]);
+})->name('home');
 
-// Blog index route
+// ─── Blog index route ───────────────────────────────────────────────
 Route::get('/blog', function () {
     return view('blog.index');
 })->name('blog.index');
 
-// Blog detail route using DB model (for any existing database posts)
+// ─── Static blog article route - serves posts from the $staticPosts array ───────
+Route::get('/blog/{slug}', function ($slug) use ($staticPosts) {
+    $post = null;
+    foreach ($staticPosts as $key => $p) {
+        if ($p['slug'] === $slug) {
+            $post = $p;
+            break;
+        }
+    }
+    abort_unless($post, 404);
+    return view('blog.article', ['post' => $post]);
+})->name('blog.article');
+
+// ─── Blog detail route using DB model (kept for backward compatibility) ───────
+// This route will 404 if there's no database, but the homepage and blog.index
+// no longer depend on it.
 Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('blog.show');
+
+// ─── Contact form route ─────────────────────────────────────────────
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
