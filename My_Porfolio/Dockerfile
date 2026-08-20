@@ -46,6 +46,10 @@ COPY --from=frontend /app/public/build ./public/build
 
 COPY . .
 
+RUN echo "=== CHECK PUBLIC BUILD ===" \
+    && ls -lah public/build \
+    && find public/build -maxdepth 2 -type f
+
 RUN mkdir -p \
     storage/framework/cache \
     storage/framework/sessions \
