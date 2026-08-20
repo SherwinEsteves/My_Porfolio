@@ -16,6 +16,8 @@ FROM composer:2 AS composer
 WORKDIR /app
 
 COPY composer.json composer.lock ./
+COPY . .
+
 RUN composer install \
     --no-dev \
     --no-interaction \
